@@ -2,9 +2,10 @@ public class Game {
     private Board b;
     private char currPlayer;
 
-    // initially just 32 players ---
+    // initially just 2 players ---
     // but later change to take one param to indicate play against comp or human
     public Game() {
+        b = new Board();
 
     }
 

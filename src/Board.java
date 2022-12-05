@@ -2,7 +2,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Board {
-    //private char[][] board;
     final static int HEIGHT = 6;
     final static int WIDTH = 7;
     private char [][] board = new char[HEIGHT][WIDTH];
@@ -11,11 +10,27 @@ public class Board {
 
     public Board() {
         //Creates an empty board
-        // double for loop --- everything set ' '
         //todo: grace
         char[][] board = new char[HEIGHT][WIDTH];
 
         board.toString();
+    }
+
+    /**
+     *
+     * @param col 1 tp 7
+     * @return
+     */
+    public boolean validCol(int col) {
+        //check for valid column
+        if(col < 1 || col > board[0].length){
+            return false;
+        }
+        //check for full column
+        if(board[0][col] != ' '){
+            return false;
+        }
+        return true;
     }
 
     public void move(char player, int col) {
@@ -23,7 +38,7 @@ public class Board {
         // todo:grace
         //throws exception if col oob
         if (col > 7 || col < 1) {
-            throw new IllegalArgumentException("column out of bounds");
+            throw new IllegalArgumentException("Column is out of bounds");
         }
         col = col-1;
 

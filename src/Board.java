@@ -4,16 +4,21 @@ import java.util.Scanner;
 public class Board {
     final static int HEIGHT = 6;
     final static int WIDTH = 7;
-    private char [][] board = new char[HEIGHT][WIDTH];
+    private char [][] board;
     Scanner sc = new Scanner(System.in);
 
 
     public Board() {
         //Creates an empty board
         //todo: grace
-        char[][] board = new char[HEIGHT][WIDTH];
+        board = new char[HEIGHT][WIDTH];
+        for(int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                board[row][col] = ' ';
+            }
+        }
 
-        board.toString();
+       // board.toString();
     }
 
     /**
@@ -153,19 +158,19 @@ public class Board {
     public String toString() {
         // create a giant string with \n ... col numbers at top maybe?
         // todo: grace
-        System.out.print(" 1 2 3 4 5 6 7\n");
+        String s = "";
+        s+=" 1 2 3 4 5 6 7\n";
         for(int row = 0; row < board.length; row++){
-            System.out.print("|");
+            s+="|";
             for(int col = 0; col <board[0].length; col++){
-                board[row][col] = ' ';
-                System.out.print(board[row][col]);
-                System.out.print("|");
+               // board[row][col] = ' ';
+                s+=board[row][col];
+                s+="|";
             }
-            System.out.println();
-            System.out.println("--------------");
+            s+="\n--------------\n";
         }
 
-        return board.toString();
+        return s;
     }
 
 }

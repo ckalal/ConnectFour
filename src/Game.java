@@ -14,48 +14,56 @@ public class Game {
         b = new Board();
     }
 
-    public void gameLoop() throws IllegalArgumentException{
+    public void gameLoop(){
+
+    }
+    public void gameLoopTwoPlayer() throws IllegalArgumentException {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Player 1: Please enter your name.");
-        player1 = scan.next();
-        System.out.println("Player 2: Please enter your name");
-        player2 = scan.next();
-        System.out.println("Player 1 is red and player 2 is yellow.");
-        //Prints out the initial empty board
-        System.out.println(b);
+            System.out.println("Player 1: Please enter your name.");
+            player1 = scan.next();
+            System.out.println("Player 2: Please enter your name");
+            player2 = scan.next();
+            System.out.println("Player 1 is red and player 2 is yellow.");
+            //Prints out the initial empty board
+            System.out.println(b);
 
-        //Game Loop
-        for(int i = 0; i <= b.toString().length(); i++) {
+            //Game Loop
+            //while (!b.hasWon(currPlayer))
+            for (int i = 0; i <= b.toString().length(); i++) {
 
-            //Toggles between player one and player two
-            if (currPlayer == 'R'){
-                currPlayer = 'Y';
-            }
-            else{
-                currPlayer = 'R';
-            }
-
-            System.out.println("Please enter a column number (1-7): ");
-            userCol = scan.nextInt() - 1;
-            if (userCol > 6) { //throws an argument if the user enters a number that is too big
-                throw new IllegalArgumentException ("This column number is too big. Please try again.");
-            } if(!(scan.hasNextInt())) { //throws an exception if the user does not enter an int
-                throw new IllegalArgumentException("You need to enter a number 1-7.");
-            } else { //adds a move to the board
-                b.move(currPlayer, userCol);
-                System.out.println(b); //prints out the board after the move has been placed
-            }
-            // Checks if a player has won
-            if (b.hasWon(currPlayer)) {
-                System.out.println(currPlayer + " has won!");
-                if(currPlayer == 'R'){
-                    System.out.println("Congratulations, " + player1 + "!");
+                //Toggles between player one and player two
+                if (currPlayer == 'R') {
+                    currPlayer = 'Y';
+                } else {
+                    currPlayer = 'R';
                 }
-                if(currPlayer == 'Y'){
-                    System.out.println("Congratulations, " + player2 + "!");
+
+                System.out.println("Please enter a column number (1-7): ");
+                userCol = scan.nextInt();
+                if (userCol > 6) { //throws an argument if the user enters a number that is too big
+                    throw new IllegalArgumentException("This column number is too big. Please try again.");
+                }
+                if (!(scan.hasNextInt())) { //throws an exception if the user does not enter an int
+                    throw new IllegalArgumentException("You need to enter a number 1-7.");
+                } else { //adds a move to the board
+                    b.move(currPlayer, userCol);
+                    System.out.println(b); //prints out the board after the move has been placed
+                }
+                // Checks if a player has won
+                if (b.hasWon(currPlayer)) {
+                    System.out.println(currPlayer + " has won!");
+                    if (currPlayer == 'R') {
+                        System.out.println("Congratulations, " + player1 + "!");
+                    }
+                    if (currPlayer == 'Y') {
+                        System.out.println("Congratulations, " + player2 + "!");
+                    }
                 }
             }
-        }
+    }
+
+    public void gameLoopOnePlayer() throws IllegalArgumentException {
+
     }
 
     public int getCompMoveEasy() {

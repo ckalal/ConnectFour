@@ -28,8 +28,7 @@ public class Game {
             System.out.println(b);
 
             //Game Loop
-            //while (!b.hasWon(currPlayer))
-            for (int i = 0; i <= b.toString().length(); i++) {
+            while (!b.hasWon(currPlayer)) {
 
                 //Toggles between player one and player two
                 if (currPlayer == 'R') {
@@ -49,21 +48,36 @@ public class Game {
                     b.move(currPlayer, userCol);
                     System.out.println(b); //prints out the board after the move has been placed
                 }
-                // Checks if a player has won
-                if (b.hasWon(currPlayer)) {
-                    System.out.println(currPlayer + " has won!");
-                    if (currPlayer == 'R') {
-                        System.out.println("Congratulations, " + player1 + "!");
-                    }
-                    if (currPlayer == 'Y') {
-                        System.out.println("Congratulations, " + player2 + "!");
-                    }
-                }
             }
+        // Checks if a player has won
+        if (b.hasWon(currPlayer)) {
+            System.out.println(currPlayer + " has won!");
+            if (currPlayer == 'R') {
+                System.out.println("Congratulations, " + player1 + "!");
+            }
+            if (currPlayer == 'Y') {
+                System.out.println("Congratulations, " + player2 + "!");
+            }
+        }
     }
 
     public void gameLoopOnePlayer() throws IllegalArgumentException {
-
+        Scanner scnr = new Scanner(System.in);
+        while (!b.hasWon(currPlayer)) {
+            currPlayer = 'R';
+            System.out.println("Please enter a number 1-7.");
+            userCol = scnr.nextInt();
+            if (userCol > 6) { //throws an argument if the user enters a number that is too big
+                throw new IllegalArgumentException("This column number is too big. Please try again.");
+            }
+            if (!(scnr.hasNextInt())) { //throws an exception if the user does not enter an int
+                throw new IllegalArgumentException("You need to enter a number 1-7.");
+            } else { //adds a move to the board
+                b.move(currPlayer, userCol);
+                System.out.println(b); //prints out the board after the move has been placed
+            }
+            b.move('Y',getCompMoveEasy());
+        }
     }
 
     public int getCompMoveEasy() {

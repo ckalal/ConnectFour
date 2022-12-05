@@ -12,10 +12,11 @@ public class Board {
         // double for loop --- everything set ' '
         //todo: grace
         System.out.println("1 2 3 4 5 6 7");
-        char[][] board = new char[WIDTH][HEIGHT];
+        char[][] board = new char[HEIGHT][WIDTH];
         for(int row = 0; row < board.length; row++){
             System.out.print("|");
             for(int col = 0; col <board[0].length; col++){
+                board[row][col] = ' ';
                 System.out.print(board[row][col]);
                 System.out.print("|");
             }
@@ -27,15 +28,36 @@ public class Board {
         return;
     }
 
-    public void move(char player, int col) throws IllegalArgumentException{
+    public void move(char player, int col) {
         // throw exception if col oob
-        // throw exeption if col is full
+        // throw exception if col is full
         // update board
         // todo:grace
 
+        if (col > 7 || col < 1) {
+            throw new IllegalArgumentException("column out of bounds");
+        }
+        col = col-1;
+//        boolean columnisFull = true;
+//        for (int i = 0; i < this.HEIGHT; i++) {
+//            if (this.board[i][col] == ' ') {
+//                columnisFull = false;
+//            }
+//        }
+        if(this.board[0][col] != ' '){
+            throw new IllegalArgumentException("Column is full");
+        }
+        int lastOpenRow = 0;
+        for(int row = 1; row<this.HEIGHT; row++){
+            if(this.board[row][col]==' '){
+                lastOpenRow = row;
+            }
+        }
+        this.board[lastOpenRow][col] = player;
 
 
     }
+
 
     public boolean hasWon(char player) {
         // Todo: Corinne
@@ -132,7 +154,16 @@ public class Board {
     public String toString() {
         // create a giant string with \n ... col numbers at top maybe?
         // todo: grace
-        return null;
+        String update = " 1 2 3 4 5 6 7\n";
+        for(int i = 0; i < HEIGHT; i++){
+            update+= (new String(String.valueOf(i))).toString()+": ";
+            for(int j=0; j<WIDTH; j++){
+                update+=(new String(String.valueOf(board[i][j]))).toString();
+                update+=' ';
+            }
+            update+="\n";
+        }
+        return update;
     }
 
 }

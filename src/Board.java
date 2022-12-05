@@ -64,7 +64,7 @@ public class Board {
         int counth = 0;
         for (int w = 0;WIDTH > w; w ++){
             for (int h = 0; HEIGHT > h; h++){
-                if (board[w][h] == player){
+                if (board[h][w] == player){
                     counth += 1;
                 }
                 if (counth >= 4){
@@ -77,7 +77,7 @@ public class Board {
         int countv = 0;
         for (int h = 0; HEIGHT > h; h ++){
             for (int w = 0; WIDTH > w; w++){
-                if (board[w][h] == player){
+                if (board[h][w] == player){
                     countv += 1;
                 }
                 if (countv >= 4){
@@ -153,7 +153,7 @@ public class Board {
     public String toString() {
         // create a giant string with \n ... col numbers at top maybe?
         // todo: grace
-        System.out.print("1 2 3 4 5 6 7\n");
+        System.out.print(" 1 2 3 4 5 6 7\n");
         for(int row = 0; row < board.length; row++){
             System.out.print("|");
             for(int col = 0; col <board[0].length; col++){

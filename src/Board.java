@@ -1,31 +1,21 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Board {
-    private char[][] board;
+    //private char[][] board;
     final static int HEIGHT = 6;
     final static int WIDTH = 7;
+    private char [][] board = new char[HEIGHT][WIDTH];
     Scanner sc = new Scanner(System.in);
 
 
-    public void Board() {
+    public Board() {
         //Creates an empty board
         // double for loop --- everything set ' '
         //todo: grace
-        System.out.println("1 2 3 4 5 6 7");
         char[][] board = new char[HEIGHT][WIDTH];
-        for(int row = 0; row < board.length; row++){
-            System.out.print("|");
-            for(int col = 0; col <board[0].length; col++){
-                board[row][col] = ' ';
-                System.out.print(board[row][col]);
-                System.out.print("|");
-            }
-            System.out.println();
-            System.out.println("--------------");
-        }
 
-
-        return;
+        board.toString();
     }
 
     public void move(char player, int col) {
@@ -38,12 +28,7 @@ public class Board {
             throw new IllegalArgumentException("column out of bounds");
         }
         col = col-1;
-//        boolean columnisFull = true;
-//        for (int i = 0; i < this.HEIGHT; i++) {
-//            if (this.board[i][col] == ' ') {
-//                columnisFull = false;
-//            }
-//        }
+
         if(this.board[0][col] != ' '){
             throw new IllegalArgumentException("Column is full");
         }
@@ -154,16 +139,19 @@ public class Board {
     public String toString() {
         // create a giant string with \n ... col numbers at top maybe?
         // todo: grace
-        String update = " 1 2 3 4 5 6 7\n";
-        for(int i = 0; i < HEIGHT; i++){
-            update+= (new String(String.valueOf(i))).toString()+": ";
-            for(int j=0; j<WIDTH; j++){
-                update+=(new String(String.valueOf(board[i][j]))).toString();
-                update+=' ';
+        System.out.print("1 2 3 4 5 6 7\n");
+        for(int row = 0; row < board.length; row++){
+            System.out.print("|");
+            for(int col = 0; col <board[0].length; col++){
+                board[row][col] = ' ';
+                System.out.print(board[row][col]);
+                System.out.print("|");
             }
-            update+="\n";
+            System.out.println();
+            System.out.println("--------------");
         }
-        return update;
+
+        return board.toString();
     }
 
 }

@@ -19,26 +19,25 @@ public class Board {
     }
 
     public void move(char player, int col) {
-        // throw exception if col oob
-        // throw exception if col is full
         // update board
         // todo:grace
-
+        //throws exception if col oob
         if (col > 7 || col < 1) {
             throw new IllegalArgumentException("column out of bounds");
         }
         col = col-1;
 
-        if(this.board[0][col] != ' '){
+        //throw exception if col is full
+        if(board[0][col] != ' '){
             throw new IllegalArgumentException("Column is full");
         }
         int lastOpenRow = 0;
-        for(int row = 1; row<this.HEIGHT; row++){
-            if(this.board[row][col]==' '){
+        for(int row = 1; row<HEIGHT; row++){
+            if(board[row][col]==' '){
                 lastOpenRow = row;
             }
         }
-        this.board[lastOpenRow][col] = player;
+        board[lastOpenRow][col] = player;
 
 
     }

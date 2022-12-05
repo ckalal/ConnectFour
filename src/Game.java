@@ -12,6 +12,7 @@ public class Game {
     // but later change to take one param to indicate play against comp or human
     public Game() {
         b = new Board();
+
     }
 
     public void gameLoop(){

@@ -5,9 +5,8 @@ public class Driver {
         // ask play against comp??
 
         Game b = new Game();
-        b.gameLoopTwoPlayer();
+        b.gameLoop();
 
     }
 
 }
-

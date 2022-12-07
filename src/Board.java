@@ -54,7 +54,6 @@ public class Board {
             }
         }
         board[lastOpenRow][col] = player;
-        System.out.println(board[lastOpenRow][col] + "hi");
     }
 
     public boolean hasWon(char player, int move) {
@@ -149,6 +148,81 @@ public class Board {
         if (count == 3){
             return true;
         }
+//
+//        //Check diagonally both ways, negative slope
+//        count = 0;
+//        r = row;
+//        c = col;
+//        for (int i = 0; i < 4; i++) {
+//          for (int j = 0; i < 2; i++) {
+//              r = row - 1 - i;
+//              c = col - 1 - i;
+//              if (r < 0) {
+//                  break;
+//              }
+//              if (c < 0) {
+//                  break;
+//              }
+//              if (board[r][c] == player) {
+//                  count++;
+//              }
+//          }
+//          for (int k = 0; i < 2; i++) {
+//              r = row += 1;
+//              c = col += 1;
+//
+//              if (r > 5) {
+//                  break;
+//              }
+//              if (c > 6) {
+//                  break;
+//              }
+//              if (board[r][c] == player) {
+//                  count++;
+//              }
+//          }
+//        }
+//        if (count == 3){
+//            return true;
+//        }
+
+//        //Check diagonally both ways, positive slope
+//        count = 0;
+//        r = row;
+//        c = col;
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; i < 2; i++) {
+//                r = row + 1 + i;
+//                c = col - 1 - i;
+//                if (r < 0) {
+//                    break;
+//                }
+//                if (c < 0) {
+//                    break;
+//                }
+//                if (board[r][c] == player) {
+//                    count++;
+//                }
+//            }
+//            for (int k = 0; i < 2; i++) {
+//                r = row -= 1;
+//                c = col += 1;
+//
+//                if (r > 5) {
+//                    break;
+//                }
+//                if (c > 6) {
+//                    break;
+//                }
+//                if (board[r][c] == player) {
+//                    count++;
+//                }
+//            }
+//        }
+//        if (count == 3){
+//            return true;
+//        }
+
 
         //checks right
         count = 0;
@@ -183,6 +257,41 @@ public class Board {
         if (count == 3){
             return true;
         }
+//
+//        //Check horizontally  both ways
+//        count = 0;
+//        r = row;
+//        c = col;
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; i < 2; i++) {
+//                c = col - 1 - i;
+//                if (r < 0) {
+//                    break;
+//                }
+//                if (c < 0) {
+//                    break;
+//                }
+//                if (board[r][c] == player) {
+//                    count++;
+//                }
+//            }
+//            for (int k = 0; i < 2; i++) {
+//                c = col += 1;
+//
+//                if (r > 5) {
+//                    break;
+//                }
+//                if (c > 6) {
+//                    break;
+//                }
+//                if (board[r][c] == player) {
+//                    count++;
+//                }
+//            }
+//        }
+//        if (count == 3){
+//            return true;
+//        }
 
         //check down
         count = 0;

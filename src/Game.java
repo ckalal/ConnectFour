@@ -33,17 +33,17 @@ public class Game {
     }
 
     public void gameLoopTwoPlayer() {
-
 //            System.out.println("Player 1: Please enter your name.");
 //            player1 = scan.next();
 //            System.out.println("Player 2: Please enter your name");
 //            player2 = scan.next();
-        System.out.println("Player 1 is red and player 2 is yellow.");
+        System.out.println("Player 1 is red (R) and player 2 is yellow (Y).");
+
         //Prints out the initial empty board
         System.out.println(b);
 
-        //Game Loop
-        while (!(b.hasWon(currPlayer))) {
+        int move = 0;
+        do {
             //Toggles between player one and player two
             if (currPlayer == 'R') {
                 currPlayer = 'Y';
@@ -54,54 +54,20 @@ public class Game {
             //adds a move to the board
             while (true) {
                 try {
-                    int move = getMove();
+                    move = getMove();
                     b.move(currPlayer, move);
                     System.out.println(b);
+//                    System.out.println(b.hasWon(currPlayer,move));
                     break;
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
-
-
                 }
             }
-            //prints out the board after the move has been placed
 
+        } while (!(b.hasWon(currPlayer, move)));
+
+        System.out.println(currPlayer + " has won!");
         }
-            // Checks which player won
-//            if (b.hasWon(currPlayer)) {
-//                System.out.println(currPlayer + " has won!");
-                if (currPlayer == 'R') {
-                    System.out.println("Congratulations, " + player1 + "!");
-                }
-                if (currPlayer == 'Y') {
-                    System.out.println("Congratulations, " + player2 + "!");
-                }
-//            }
-
-        }
-
-//    public void gameLoopOnePlayer() throws IllegalArgumentException {
-//        Scanner scnr = new Scanner(System.in);
-//        while (!b.hasWon(currPlayer)) {
-//            currPlayer = 'R';
-//
-//
-//            System.out.println("Please enter a number 1-7.");
-//            userCol = scnr.nextInt();
-//            if (!(scnr.hasNextInt())) { //throws an exception if the user does not enter an int
-//                throw new IllegalArgumentException("You need to enter a number 1-7.");
-//            } else { //adds a move to the board
-//                b.move(currPlayer, userCol);
-//                System.out.println(b); //prints out the board after the move has been placed
-//            }
-//            b.move('Y', getCompMoveEasy());
-//        }
-//        if (b.hasWon('R')) {
-//            System.out.println("Congrats, you won!");
-//        } else if (b.hasWon('Y')) {
-//            System.out.println("You lose!");
-//        }
-//    }
 
         public int getCompMoveEasy () {
             Random rand = new Random();

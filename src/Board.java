@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Board {
@@ -17,13 +16,11 @@ public class Board {
                 board[row][col] = ' ';
             }
         }
-
-       // board.toString();
     }
 
     /**
      *
-     * @param col 1 tp 7
+     * @param col 1 t0 7
      * @return
      */
     public boolean validCol(int col) {
@@ -46,7 +43,6 @@ public class Board {
             throw new IllegalArgumentException("Column is out of bounds");
         }
         col = col-1;
-
         //throw exception if col is full
         if(board[0][col] != ' '){
             throw new IllegalArgumentException("Column is full");
@@ -58,99 +54,153 @@ public class Board {
             }
         }
         board[lastOpenRow][col] = player;
-
-
+        System.out.println(board[lastOpenRow][col] + "hi");
     }
 
+    public boolean hasWon(char player, int move) {
+       int col = move - 1;
+       int row = 0;
 
-    public boolean hasWon(char player) {
-        // Todo: Corinne
-        //checks to see if player has won horizontally
-        int counth = 0;
-        for (int w = 0;WIDTH > w; w ++){
-            for (int h = 0; HEIGHT > h; h++){
-                if (board[h][w] == player){
-                    counth += 1;
-                }
-                if (counth >= 4){
-                    return true;
-                }
-                return false;
+       while (board[row][col] == ' ') {
+           row++;
+       }
+
+       //diagonal down right
+       int count = 0;
+       int r = row;
+       int c = col;
+       for (int i = 0; i < 3; i++) {
+           r = row + 1 + i;
+           c = col + 1 + i;
+
+           if (r > 5) {
+               break;
+           }
+           if (c > 6) {
+               break;
+           }
+           if (board[r][c] == player) {
+               count ++;
+           }
+       }
+        if (count == 3) {
+            return true;
+        }
+
+        //diagonal down left
+        count = 0;
+        r = row;
+        c = col;
+        for (int i = 0; i < 3; i++) {
+            r = row + 1 + i;
+            c = col - 1 - i;
+            if (r > 5){
+                break;
+            }
+            if (c < 0){
+                break;
+            }
+            if (board[r][c] == player){
+                count ++;
             }
         }
-        //Checks to see if player has won vertically
-        int countv = 0;
-        for (int h = 0; HEIGHT > h; h ++){
-            for (int w = 0; WIDTH > w; w++){
-                if (board[h][w] == player){
-                    countv += 1;
-                }
-                if (countv >= 4){
-                    return true;
-                }
-                return false;
+        if (count == 3){
+            return true;
+        }
+
+        //Checks diagonal up right
+        count = 0;
+        r = row;
+        c = col;
+        for (int i = 0; i < 3; i++) {
+            r = row - 1 - i;
+            c = col + 1 + i;
+            if (r < 0){
+                break;
+            }
+            if (c > 6){
+                break;
+            }
+            if (board[r][c] == player){
+                count++;
             }
         }
-        //Checks diagonal going one way
-        boolean check1 = false;
-        int checkCol1 = 1;
-        int checkRow1 = 1;
-        int countd1 = 0;
+        if (count == 3){
+            return true;
+        }
 
-        for (int w = 0; WIDTH > w; w+=1){
-            for (int h = 0; HEIGHT > h; h+= 1){
-                if (board[w][h] == player){
-                    countd1 += 1;
-                    check1 = true;
-                    while(check1){
-                        if (checkCol1 + w <= WIDTH - 1 && checkRow1 + h <= HEIGHT - 1){
-                            if (board[w + checkCol1][h + checkRow1] == player){
-                                countd1 += 1;
-                            }
-                        }
-                        checkCol1 += 1;
-                        checkRow1 += 1;
-
-                        if (countd1 >= 4){
-                            return true;
-                        }
-                    }
-                }
-                countd1 = 0;
-                checkCol1 = 0;
-                checkRow1 = 0;
+        //Checks diagonal up left
+        count = 0;
+        r = row;
+        c = col;
+        for (int i = 0; i < 3; i++) {
+            r = row - 1 - i;
+            c = col - 1 - i;
+            if (r < 0){
+                break;
+            }
+            if (c < 0){
+                break;
+            }
+            if (board[r][c] == player){
+                count++;
             }
         }
-        // Checks diagonal one way
-        boolean check2 = false;
-        int checkCol2 = 1;
-        int checkRow2 = 1;
-        int countd2 = 0;
+        if (count == 3){
+            return true;
+        }
 
-        for (int w = 0; WIDTH > w; w+=1){
-            for (int h = 0; HEIGHT > h; h+= 1){
-                if (board[w][h] == player){
-                    countd2 += 1;
-                    check2 = true;
-                    while(check2){
-                        if (w - checkCol2 >= 0 && h - checkRow2 >= 0){
-                            if (board[w - checkCol2][h - checkRow2] == player){
-                                countd2 += 1;
-                            }
-                        }
-                        checkCol2 += 1;
-                        checkRow2 += 1;
-
-                        if (countd2 >= 4){
-                            return true;
-                        }
-                    }
-                }
-                countd2 = 0;
-                checkCol2 = 0;
-                checkRow2 = 0;
+        //checks right
+        count = 0;
+        r = row;
+        c = col;
+        for (int i = 0; i < 3; i++) {
+            c = col + 1 + i;
+            if (c > 6){
+                break;
+            }
+            if (board[r][c] == player){
+                count ++;
             }
         }
+        if (count == 3){
+            return true;
+        }
+
+        //check left
+        count = 0;
+        r = row;
+        c = col;
+        for (int i = 0; i < 3; i++) {
+            c = col - 1 - i;
+            if (c < 0){
+                break;
+            }
+            if (board[r][c] == player){
+                count ++;
+            }
+        }
+        if (count == 3){
+            return true;
+        }
+
+        //check down
+        count = 0;
+        r = row;
+        c = col;
+        for (int i = 0; i < 3; i++) {
+            r = row + 1 + i;
+            if (r > 5){
+                break;
+            }
+            if (board[r][c] == player){
+                count ++;
+            }
+        }
+        if (count == 3){
+            return true;
+        }
+
         return false;
     }
 

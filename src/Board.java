@@ -65,7 +65,7 @@ public class Board {
        }
 
        //diagonal down right
-       int count = 0;
+       int countDR = 0;
        int r = row;
        int c = col;
        for (int i = 0; i < 3; i++) {
@@ -79,15 +79,17 @@ public class Board {
                break;
            }
            if (board[r][c] == player) {
-               count ++;
+               countDR ++;
+           } else {
+               break;
            }
        }
-        if (count == 3) {
+        if (countDR == 3) {
             return true;
         }
 
         //diagonal down left
-        count = 0;
+        int countDL = 0;
         r = row;
         c = col;
         for (int i = 0; i < 3; i++) {
@@ -100,15 +102,17 @@ public class Board {
                 break;
             }
             if (board[r][c] == player){
-                count ++;
+                countDL ++;
+            }else {
+                break;
             }
         }
-        if (count == 3){
+        if (countDL == 3){
             return true;
         }
 
         //Checks diagonal up right
-        count = 0;
+        int countUR = 0;
         r = row;
         c = col;
         for (int i = 0; i < 3; i++) {
@@ -121,15 +125,17 @@ public class Board {
                 break;
             }
             if (board[r][c] == player){
-                count++;
+                countUR++;
+            }else {
+                break;
             }
         }
-        if (count == 3){
+        if (countUR == 3){
             return true;
         }
 
         //Checks diagonal up left
-        count = 0;
+        int countUL = 0;
         r = row;
         c = col;
         for (int i = 0; i < 3; i++) {
@@ -142,90 +148,17 @@ public class Board {
                 break;
             }
             if (board[r][c] == player){
-                count++;
+                countUL++;
+            } else {
+                break;
             }
         }
-        if (count == 3){
+        if (countUL == 3){
             return true;
         }
-//
-//        //Check diagonally both ways, negative slope
-//        count = 0;
-//        r = row;
-//        c = col;
-//        for (int i = 0; i < 4; i++) {
-//          for (int j = 0; i < 2; i++) {
-//              r = row - 1 - i;
-//              c = col - 1 - i;
-//              if (r < 0) {
-//                  break;
-//              }
-//              if (c < 0) {
-//                  break;
-//              }
-//              if (board[r][c] == player) {
-//                  count++;
-//              }
-//          }
-//          for (int k = 0; i < 2; i++) {
-//              r = row += 1;
-//              c = col += 1;
-//
-//              if (r > 5) {
-//                  break;
-//              }
-//              if (c > 6) {
-//                  break;
-//              }
-//              if (board[r][c] == player) {
-//                  count++;
-//              }
-//          }
-//        }
-//        if (count == 3){
-//            return true;
-//        }
-
-//        //Check diagonally both ways, positive slope
-//        count = 0;
-//        r = row;
-//        c = col;
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; i < 2; i++) {
-//                r = row + 1 + i;
-//                c = col - 1 - i;
-//                if (r < 0) {
-//                    break;
-//                }
-//                if (c < 0) {
-//                    break;
-//                }
-//                if (board[r][c] == player) {
-//                    count++;
-//                }
-//            }
-//            for (int k = 0; i < 2; i++) {
-//                r = row -= 1;
-//                c = col += 1;
-//
-//                if (r > 5) {
-//                    break;
-//                }
-//                if (c > 6) {
-//                    break;
-//                }
-//                if (board[r][c] == player) {
-//                    count++;
-//                }
-//            }
-//        }
-//        if (count == 3){
-//            return true;
-//        }
-
 
         //checks right
-        count = 0;
+        int countR = 0;
         r = row;
         c = col;
         for (int i = 0; i < 3; i++) {
@@ -234,15 +167,17 @@ public class Board {
                 break;
             }
             if (board[r][c] == player){
-                count ++;
+                countR ++;
+            } else {
+                break;
             }
         }
-        if (count == 3){
+        if (countR == 3){
             return true;
         }
 
         //check left
-        count = 0;
+        int countL = 0;
         r = row;
         c = col;
         for (int i = 0; i < 3; i++) {
@@ -251,50 +186,17 @@ public class Board {
                 break;
             }
             if (board[r][c] == player){
-                count ++;
+                countL ++;
+            } else {
+                break;
             }
         }
-        if (count == 3){
+        if (countL == 3){
             return true;
         }
-//
-//        //Check horizontally  both ways
-//        count = 0;
-//        r = row;
-//        c = col;
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; i < 2; i++) {
-//                c = col - 1 - i;
-//                if (r < 0) {
-//                    break;
-//                }
-//                if (c < 0) {
-//                    break;
-//                }
-//                if (board[r][c] == player) {
-//                    count++;
-//                }
-//            }
-//            for (int k = 0; i < 2; i++) {
-//                c = col += 1;
-//
-//                if (r > 5) {
-//                    break;
-//                }
-//                if (c > 6) {
-//                    break;
-//                }
-//                if (board[r][c] == player) {
-//                    count++;
-//                }
-//            }
-//        }
-//        if (count == 3){
-//            return true;
-//        }
 
         //check down
-        count = 0;
+        int countD = 0;
         r = row;
         c = col;
         for (int i = 0; i < 3; i++) {
@@ -303,10 +205,24 @@ public class Board {
                 break;
             }
             if (board[r][c] == player){
-                count ++;
+                countD ++;
+            } else {
+                break;
             }
         }
-        if (count == 3){
+        if (countD == 3){
+            return true;
+        }
+
+        if ((countUL + countDR) >=3 ) {
+            return true;
+        }
+
+        if ((countUR + countDL >= 3)){
+            return true;
+        }
+
+        if (countR + countL >= 3){
             return true;
         }
 
